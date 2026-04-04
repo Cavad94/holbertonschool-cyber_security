@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Creates a PID file and handles multiple signals (SIGINT, SIGTERM, SIGQUIT)
+echo $$ > /tmp/myscript.pid
+trap 'echo "Y U no love me?!"' SIGINT
+clean_up() {
+    if [ "$1" == "SIGTERM" ]; then
+        echo "I hate the kill command"
+    fi
+    rm -f /tmp/myscript.pid
+    exit
+}
+trap 'clean_up SIGTERM' SIGTERM
+trap 'clean_up SIGQUIT' SIGQUIT
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
+done
