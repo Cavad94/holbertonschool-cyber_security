@@ -16,5 +16,6 @@ echo -n "$encoded_str" | base64 -d 2>/dev/null | od -v -An -t u1 | while read -r
         xor_result=$(( byte ^ 95 ))
         # Alınan ASCII kodunu simvola çevirib çap edirik
         printf "\\$(printf '%03o' "$xor_result")"
-     Pap
+    done
+done
 echo ""
